@@ -1331,6 +1331,20 @@ describe('polygon', function () {
 			polygonMap87563 = new Polygon(points);
 			assert.isNotOk(polygon.isSimplePolygon(), "polygon is simple")
 		});
+
+	it('test is polygon complex 3', function () {
+			const geom = [[116.305714, 40.061918], [116.313008, 40.056175], 
+			[116.303774, 40.048471], [116.320554, 40.059433], 
+			[116.307403, 40.058771], [116.318578, 40.046317], 
+			[116.310565, 40.058356], [116.310062, 40.051205], 
+			[116.313368, 40.05808], [116.305714, 40.061918]];
+			points = geom.map(function (pnt) {
+				return new Point(pnt[0], pnt[1]);
+			});
+			polygon = new Polygon(points);
+
+			assert.ok(!polygon.isSimplePolygon(), "polygon is complex")
+		});
 });
 
 
