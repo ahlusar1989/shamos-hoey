@@ -1,1 +1,1 @@
-# shamos-hoey
+# Bentley Ottman Algorithm for Self-Intersection
