@@ -3,6 +3,8 @@ const EventQueue = require('../EventQueue.js');
 const Polygon = require('../Polygon.js');
 const assert = require("chai").assert;
 
+
+// Floorplan 1723 data
 describe('Shamos Hoey Event Queue', function () {
 	describe('event queue', function () {
 			let points, data, polygon, event_queue;

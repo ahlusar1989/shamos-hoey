@@ -5,7 +5,7 @@
 // polygons
 
 const RedBlackTree = require('./RedBlackTree.js');
-const Point = require('./point.js');
+const Point = require('./Point.js');
 
 // A class for constructing segments (or edges) of a given polygon to test
 // Allows storage and retrieval from the AVL tree
@@ -78,8 +78,8 @@ class Sweepline {
 				seg.rightPoint = p1;
 			}
 
-			// Add node to tree and setup linkages to "above" and "below"
-			// edges as per algorithm
+			// Add node to tree in order to create links to "above" and "below"
+			// edges as per above algorithm 
 			const node = this.tree.add(seg);
 			const above = this.tree.findNext(node._value);
 			const np = this.tree.findPrevious(node._value);
