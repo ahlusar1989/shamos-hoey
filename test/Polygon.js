@@ -1192,7 +1192,7 @@ beforeEach("Create virtual reality importer floor data points Floor 87349", func
 });
 
 
-describe('polygon', function () {
+describe('Polygon Constructor tests', function () {
 	let points, polygon;
 	it('test can build a polygon from floor data', function () {
 		const floor = [

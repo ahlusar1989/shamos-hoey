@@ -1,7 +1,7 @@
 const Point = require('../Point.js');
 const assert = require("chai").assert;
 
-describe('point', function () {
+describe('Point constructor test', function () {
 		it('test less than precision', function () {
 			var p0 = new Point(1, 1);
 			var p1 = new Point(3, 3);

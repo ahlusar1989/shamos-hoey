@@ -6,9 +6,9 @@ const assert = require("chai").assert;
 
 // Floorplan 1723 data
 describe('Bentley-Ottman Event Queue', function () {
-	describe('event queue', function () {
+	describe('Event Queue', function () {
 			let points, data, polygon, event_queue;
-			it('test can create an Event Queue', function () {
+			it('test can create an Event Queue for floor plan', function () {
 				const data = [
 				    {
 				      "id": 1297005,

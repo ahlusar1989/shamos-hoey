@@ -100,13 +100,15 @@ describe('Sweep Line class method test for Floor 87563', function () {
 
 	it('test find class method for Sweepline construct', function () {
 		let points, polygon, sweepLine, eventQueue;
-		points = floor87563;
+		points = floor87563.map(function (point) {
+				return new Point(point.x, point.y
+			)});
 		polygon = new Polygon(points);
 		sweepLine = new Sweepline(polygon);
 		eventQueue = new EventQueue(polygon);
 		let event;
 		while (event = eventQueue.events.pop()) {
-			sweepLine.add(ev);
+			sweepLine.add(event);
 		}
 		assert.isOk(sweepLine.find({
 			edge: 1
