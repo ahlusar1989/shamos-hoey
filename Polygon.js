@@ -3,19 +3,19 @@ var EventQueue = require('./EventQueue.js'),
 
 
 class Polygon {
-		constructor(point_array) {
-		this.vertices = point_array
+		constructor(pointArray) {
+		this.vertices = pointArray
 	}	
 
 	// returns true if simple, false if not.
-	isSimplePolygon () {
+	isASimplePolygon () {
 
 		const eventQueue = new EventQueue(this);
 		const sweepLine = new SweepLine(this);
 		let seg, event;
 
-		// This loop processes all events in the sorted queue
-		// Events are only left or right vertices
+		// This while loop processes all "events" (aka vertices) in the sorted queue
+		// Events are classified as only left or right vertices
 		while (event = eventQueue.next()) {
 			if (event.type == 'left') {
 				seg = sweepLine.add(event);

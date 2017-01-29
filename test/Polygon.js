@@ -4,12 +4,11 @@ const Polygon = require('../Polygon.js');
 const assert = require("chai").assert;
 
 
-// Floorplan 1723 data
-describe('Bentley-Ottman Event Queue', function () {
-	describe('event queue', function () {
-			let points, data, polygon, event_queue;
-			it('test can create an Event Queue', function () {
-				const data = [
+
+describe('polygon', function () {
+	let points, polygon;
+	it('test can build a polygon from floor data', function () {
+		const floor = [
 				    {
 				      "id": 1297005,
 				      "floor_id": 17123,
@@ -117,16 +116,15 @@ describe('Bentley-Ottman Event Queue', function () {
 				    }
 				  ];
 
-				var points = data.map(function (pnt) {
-					return new Point(pnt.x, pnt.y);
-				});
-
-				polygon = new Polygon(points);
-
-				event_queue = new EventQueue(polygon);
-
-				assert.equal(event_queue.events.length, 30);
-				assert.equal(event_queue.events.length, event_queue.numberOfEvents);
-			});
+			points = floor.map(function (point) {
+				return new Point(point.x, point.y);
+			}),
+			polygon = new Polygon(points);
+			
+		assert.equal(polygon.vertices.length, floor.length);
+		assert.equal(polygon.vertices[0].x, floor[0].x);
 	});
+
 });
+
+
