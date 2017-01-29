@@ -3,10 +3,10 @@ const EventQueue = require('../EventQueue.js');
 const Polygon = require('../Polygon.js');
 const assert = require("chai").assert;
 
-describe('Shamos Hoey', function () {
+describe('Shamos Hoey Event Queue', function () {
 	describe('event queue', function () {
 			let points, data, polygon, event_queue;
-			it('test can create an EventQueue', function () {
+			it('test can create an Event Queue', function () {
 				const data = [
 				    {
 				      "id": 1297005,
@@ -122,6 +122,7 @@ describe('Shamos Hoey', function () {
 				polygon = new Polygon(points);
 
 				event_queue = new EventQueue(polygon);
+
 				assert.equal(event_queue.events.length, 30);
 				assert.equal(event_queue.events.length, event_queue.numberOfEvents);
 			});

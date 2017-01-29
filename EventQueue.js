@@ -1,6 +1,6 @@
 let currentIndex;
 let points;
-const _ = require("lodash");
+
 
 class EventQueue {
 
@@ -50,6 +50,7 @@ class EventQueue {
 		currentIndex = 0;
 	}
 }
+
 
 function compare(edge1, edge2) {
 		const v1 = edge1.vertex,

@@ -1,4 +1,4 @@
-// Originally from https://github.com/tokumine/sweepline
+// Originally forked project from https://github.com/tokumine/sweepline
 //
 // Javascript port of http://softsurfer.com/Archive/algorithm_0108/algorithm_0108.htm
 // The following Sweepline and SweepLine implementation validate and test simple 
@@ -136,7 +136,7 @@ class Sweepline {
 		this.tree.remove(nd);
 	}
 
-	// test intersect of 2 segments and return: false=none, true=intersect
+	// test intersect of 2 segments and return: false, true
 	intersect (segment1, segment2) {
 		if (!segment1 || !segment2) return false; // no intersect if either segment doesn't exist
 
