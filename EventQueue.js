@@ -23,7 +23,6 @@ class EventQueue {
 		this.events[b].otherEnd = this.events[a];
 
 		this.events[a].seg = this.events[b].seg = 0;
-
 		if (this.events[a].vertex.compareThisWithThat(this.events[b].vertex) < 0) { // determine type
 			this.events[a].type = 'left';
 			this.events[b].type = 'right';

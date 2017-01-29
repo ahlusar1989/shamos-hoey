@@ -113,7 +113,8 @@ class Sweepline {
 	}
 
 	// When removing a node from the tree, ensure the above and below links are
-	// passed on to adjacent nodes before node is deleted - addressed bug
+	// passed on to adjacent nodes before node is deleted - addressed bug in original 
+	//  iteration
 	remove (seg) {
 
 		// Fixed the bug that incorrectly prunes the tree and removes the wrong elements in the list
@@ -131,7 +132,7 @@ class Sweepline {
 			prevNode.above = seg.above;
 		}
 
-		// now  can safely remove it ---> big win!
+		// safely remove it ---> big win!
 		this.tree.remove(nd);
 	}
 
