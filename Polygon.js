@@ -8,18 +8,17 @@ class Polygon {
 	}	
 
 	// returns true if simple, false if not.
-	isASimplePolygon () {
+	isSimplePolygon() {
 
-		const eventQueue = new EventQueue(this);
-		const sweepLine = new SweepLine(this);
-		let seg, event;
-
+		let seg, event, eventQueue, sweepLine;
+		eventQueue = new EventQueue(this);
+		sweepLine = new SweepLine(this);
 		// This while loop processes all "events" (aka vertices) in the sorted queue
 		// Events are classified as only left or right vertices
 		while (event = eventQueue.next()) {
 			if (event.type == 'left') {
 				seg = sweepLine.add(event);
-				if (sweep_line.intersect(seg, seg.above)) return false;
+				if (sweepLine.intersect(seg, seg.above)) return false;
 				if (sweepLine.intersect(seg, seg.below)) return false;
 
 			} else {

@@ -6,13 +6,12 @@
 
 const RedBlackTree = require('./RedBlackTree.js');
 const Point = require('./Point.js');
-
 // A class for constructing segments (or edges) of a given polygon to test
 // Allows storage and retrieval from the AVL tree
 class SweepLineSegment {
 
-	constructor() {
-	this.edge = ev.edge;            // polygon edge i is V[i] to V[i+1]
+	constructor(event) {
+	this.edge = event.edge;            // polygon edge i is V[i] to V[i+1]
 	this.leftPoint = null;         // leftmost vertex point
 	this.rightPoint = null;        // rightmost vertex point
 	this.above = null;              // segment above "this" 
@@ -33,7 +32,7 @@ class SweepLineSegment {
 			// use y coord of right end points
 			return this.rightPoint.y < seg.rightPoint.y;
 		}
-		return Point.isLeftOfSegment(this.leftPoint, this.rightPoint, seg.leftPoint) > 0
+		return new Point(this).isLeftOfSegment(this.leftPoint, this.rightPoint, seg.leftPoint) > 0
 	};
 
 	equal (seg) {
@@ -61,16 +60,16 @@ class Sweepline {
 	}
 // Add Algorithm 'event' (more like unit of analysis) to queue
 // Units are segments or distinct edges of the polygon.
-	add(ev) {
+	add(event) {
 
-		const seg = new SweepLineSegment(ev);
-		ev.seg = seg;
+		const seg = new SweepLineSegment(event);
+		event.seg = seg;
 		const p1 = this.polygon.vertices[seg.edge];
 		const p2 = seg.edge + 1 < this.polygon.vertices.length ? this.polygon.vertices[seg.edge + 1] : this.polygon.vertices[0];
 
 			// if it is being added, then it must be a LEFT edge event
 			// but need to determine which endpoint is the left one first
-			if (p1.compare(p2) < 0) {
+			if (p1.compareThisWithThat(p2) < 0) {
 				seg.leftPoint = p1;
 				seg.rightPoint = p2;
 			} else {
@@ -138,6 +137,7 @@ class Sweepline {
 
 	// test intersect of 2 segments and return: false, true
 	intersect (segment1, segment2) {
+		let lsign, rsign;
 		if (!segment1 || !segment2) return false; // no intersect if either segment doesn't exist
 
 		// check for consecutive edges in polygon
@@ -148,13 +148,13 @@ class Sweepline {
 			return false; // no non-simple intersect since consecutive segments
 
 		// test for existence of an intersect point
-		const lsign = Point.isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.leftPoint); // segment2 left point sign
-		const rsign = Point.isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.rightPoint); // segment2 right point sign
+		lsign = new Point(this).isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.leftPoint); // segment2 left point sign
+		rsign = new Point(this).isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.rightPoint); // segment2 right point sign
 		if (lsign * rsign > 0) // segment2 endpoints have same sign relative to segment1
 			return false; // => on same side => no intersect is possible
 
-		lsign = Point.isLeftOfSegment(segment2.leftPoint, segment2.rightPoint, segment1.leftPoint); // segment1 left point sign
-		rsign = Point.isLeftOfSegment(segment2.leftPoint, segment2.rightPoint, segment1.rightPoint); // segment1 right point sign
+		lsign = new Point(this).isLeftOfSegment(segment2.leftPoint, segment2.rightPoint, segment1.leftPoint); // segment1 left point sign
+		rsign = new Point(this).isLeftOfSegment(segment2.leftPoint, segment2.rightPoint, segment1.rightPoint); // segment1 right point sign
 		if (lsign * rsign > 0) // segment1 endpoints have same sign relative to segment2
 			return false; // => on same side => no intersect is possible
 
