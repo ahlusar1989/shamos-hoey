@@ -11,7 +11,7 @@ Development
 * mocha
 * chai
 
-Notable Made Implementation
+Notable Changes to Implementation
 ==============================================
 1. ECMAScript classes that provide a much simpler and clearer syntax to create objects and deal with inheritance.
 2. Point: refactor the `isLeftofSegment` of Class `Point` as a static method
