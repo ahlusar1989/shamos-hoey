@@ -17,7 +17,7 @@ Notable Made Implementation
 2. Point: refactor the `isLeftofSegment` of Class `Point` as a static method
 3. Polygon: fix implicit global variables; rename the `simple_polygon` to `isSimplePolygon`; refactor the logic according to the rest of the classes
 4. RedBlackTree: fix the implicit global variables in Kevin Lindsey's implementation;
-5. Sweepline: Rename to Bentley-Ottman and refactor the logic according to the new constructor patterns
+5. Sweepline: Rename to Bentley-Ottman; improvements to SweepLine and SweepLine segment logic; refactor the logic according to the new constructor patterns
 6. EventQueue: add the `next` method; refactor the logic according to the new constructor pattern
 7. updates to the test spec for floor plan data
 
