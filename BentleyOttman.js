@@ -62,26 +62,26 @@ class Sweepline {
 // Units are segments or distinct edges of the polygon.
 	add(event) {
 
-		const seg = new SweepLineSegment(event);
+		var seg = new SweepLineSegment(event);
 		event.seg = seg;
-		const p1 = this.polygon.vertices[seg.edge];
-		const p2 = seg.edge + 1 < this.polygon.vertices.length ? this.polygon.vertices[seg.edge + 1] : this.polygon.vertices[0];
+		var point1 = this.polygon.vertices[seg.edge];
+		var point2 = seg.edge + 1 < this.polygon.vertices.length ? this.polygon.vertices[seg.edge + 1] : this.polygon.vertices[0];
 
 			// if it is being added, then it must be a LEFT edge event
 			// but need to determine which endpoint is the left one first
-			if (p1.compareThisWithThat(p2) < 0) {
-				seg.leftPoint = p1;
-				seg.rightPoint = p2;
+			if (point1.compareThisWithThat(point2) < 0) {
+				seg.leftPoint = point1;
+				seg.rightPoint = point2;
 			} else {
-				seg.leftPoint = p2;
-				seg.rightPoint = p1;
+				seg.leftPoint = point2;
+				seg.rightPoint = point1;
 			}
 
 			// Add node to tree in order to create links to "above" and "below"
 			// edges as per above algorithm 
-			const node = this.tree.add(seg);
-			const above = this.tree.findNext(node._value);
-			const np = this.tree.findPrevious(node._value);
+			var node = this.tree.add(seg);
+			var above = this.tree.findNext(node._value);
+			var np = this.tree.findPrevious(node._value);
 
 			if (above) {
 				seg.above = above;
@@ -97,9 +97,9 @@ class Sweepline {
 
 	find(event) {
 		// need a segment --> source the tree
-		const seg = new SweepLineSegment(event);
-		const p1 = this.polygon.vertices[seg.edge];
-		const p2 = this.polygon.vertices[seg.edge + 1];
+		var seg = new SweepLineSegment(event);
+		var p1 = this.polygon.vertices[seg.edge];
+		var p2 = this.polygon.vertices[seg.edge + 1];
 		// if it is being added, then it must be a LEFT edge event
 		// but need to determine which endpoint is the left one first
 		if (p1.compareThisWithThat(p2) < 0) {
@@ -117,16 +117,16 @@ class Sweepline {
 	remove (seg) {
 
 		// Fixed the bug that incorrectly prunes the tree and removes the wrong elements in the list
-		const nd = this.tree.find(seg);
+		var nd = this.tree.find(seg);
 		if (!nd) return;
 
 		// get the above and below segments pointing to each other
-		const nextNode = this.tree.findNext(nd);
+		var nextNode = this.tree.findNext(nd);
 		if (nextNode) {
 			nextNode.below = seg.below;
 		}
 
-		const prevNode = this.tree.findPrevious(nd);
+		var prevNode = this.tree.findPrevious(nd);
 		if (prevNode) {
 			prevNode.above = seg.above;
 		}
