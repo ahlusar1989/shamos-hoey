@@ -117,7 +117,8 @@ class Sweepline {
 	//  iteration
 	remove (seg) {
 
-		// Fixed the bug that incorrectly prunes the tree and removes the wrong elements in the list
+		// Fixed the bug that incorrectly prunes the tree and
+		 // removes the wrong elements in the list
 		var nd = this.tree.find(seg);
 		if (!nd) return;
 
