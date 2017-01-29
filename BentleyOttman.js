@@ -96,7 +96,7 @@ class Sweepline {
 	}
 
 	find(event) {
-		// need a segment to find it in the tree
+		// need a segment --> source the tree
 		const seg = new SweepLineSegment(event);
 		const p1 = this.polygon.vertices[seg.edge];
 		const p2 = this.polygon.vertices[seg.edge + 1];
@@ -137,28 +137,27 @@ class Sweepline {
 
 	// test intersect of 2 segments and return: false, true
 	intersect (segment1, segment2) {
-		let lsign, rsign;
+
 		if (!segment1 || !segment2) return false; // no intersect if either segment doesn't exist
 
 		// check for consecutive edges in polygon
-		const e1 = segment1.edge;
-		const e2 = segment2.edge;
+		var e1 = segment1.edge;
+		var e2 = segment2.edge;
 
 		if (((e1 + 1) % this.numberVertices === e2) || (e1 === (e2 + 1) % this.numberVertices))
 			return false; // no non-simple intersect since consecutive segments
-
 		// test for existence of an intersect point
-		lsign = new Point(this).isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.leftPoint); // segment2 left point sign
-		rsign = new Point(this).isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.rightPoint); // segment2 right point sign
+		var lsign = new Point(this).isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.leftPoint); // segment2 left point sign
+		var rsign = new Point(this).isLeftOfSegment(segment1.leftPoint, segment1.rightPoint, segment2.rightPoint); // segment2 right point sign
 		if (lsign * rsign > 0) // segment2 endpoints have same sign relative to segment1
 			return false; // => on same side => no intersect is possible
-
+		
 		lsign = new Point(this).isLeftOfSegment(segment2.leftPoint, segment2.rightPoint, segment1.leftPoint); // segment1 left point sign
 		rsign = new Point(this).isLeftOfSegment(segment2.leftPoint, segment2.rightPoint, segment1.rightPoint); // segment1 right point sign
+		
 		if (lsign * rsign > 0) // segment1 endpoints have same sign relative to segment2
 			return false; // => on same side => no intersect is possible
-
-		return true; // segments segment1 and segment2 are intersecting 
+		return true; // segments segment1 and segment2 are intersecting
 	}
 }
 

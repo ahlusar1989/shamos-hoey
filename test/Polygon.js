@@ -1090,6 +1090,13 @@ beforeEach("Create virtual reality importer floor data points Floor 87349", func
 					      "x": 1676.4315247024854,
 					      "y": 868.7583999034039,
 					      "archived": 0
+					    },
+					    {
+					      "id": 26397801,
+					      "floor_id": 87349,
+					      "x": 1676.4315247024854,
+					      "y": 868.7583999034039,
+					      "archived": 0
 					    }
 					 ];
 
@@ -1220,12 +1227,12 @@ describe('polygon', function () {
 
 
 	it('test is polygon simple 1', function () {
-		
+
 			points = floor84349.map(function (point) {
 				return new Point(point.x, point.y);
 			});
 			polygon = new Polygon(points);
-			assert.ok(polygon.isSimplePolygon(), "polygon is simple")
+			assert.isNotOk(polygon.isSimplePolygon(), "polygon is simple")
 		});
 
 		
