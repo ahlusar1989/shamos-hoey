@@ -1,5 +1,7 @@
 let currentIndex;
 let points;
+const _ = require("lodash");
+
 class EventQueue {
 
 	constructor(polygon) {
@@ -22,7 +24,7 @@ class EventQueue {
 
 		this.events[a].seg = this.events[b].seg = 0;
 
-		if (this.events[a].vertex.compare(this.events[b].vertex) < 0) { // determine type
+		if (this.events[a].vertex.compareThisWithThat(this.events[b].vertex) < 0) { // determine type
 			this.events[a].type = 'left';
 			this.events[b].type = 'right';
 		} else {
@@ -47,12 +49,13 @@ class EventQueue {
 	reset() {
 		currentIndex = 0;
 	}
+}
 
-	compare(edge1, edge2) {
+function compare(edge1, edge2) {
 		const v1 = edge1.vertex,
 			v2 = edge2.vertex;
 
-		const right = v1.compare(v2);
+		const right = v1.compareThisWithThat(v2);
 
 		if (right == 0) {
 			if (edge1.type == edge2.type) return 0;
@@ -62,8 +65,5 @@ class EventQueue {
 			return right;
 		}
 	}
-}
-
-
 
 module.exports = EventQueue;

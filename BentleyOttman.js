@@ -33,7 +33,7 @@ class SweepLineSegment {
 			// use y coord of right end points
 			return this.rightPoint.y < seg.rightPoint.y;
 		}
-		return Point.isLeft(this.leftPoint, this.rightPoint, seg.leftPoint) > 0
+		return Point.isLeftOfSegment(this.leftPoint, this.rightPoint, seg.leftPoint) > 0
 	};
 
 	equal (seg) {
@@ -103,7 +103,7 @@ class Sweepline {
 		const p2 = this.polygon.vertices[seg.edge + 1];
 		// if it is being added, then it must be a LEFT edge event
 		// but need to determine which endpoint is the left one first
-		if (p1.compare(p2) < 0) {
+		if (p1.compareThisWithThat(p2) < 0) {
 			seg.leftPoint = p1;
 			seg.rightPoint = p2;
 		} else {

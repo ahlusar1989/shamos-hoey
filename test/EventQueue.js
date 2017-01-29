@@ -120,11 +120,9 @@ describe('Shamos Hoey', function () {
 				});
 
 				polygon = new Polygon(points);
-				console.log(JSON.stringify(polygon));
 
 				event_queue = new EventQueue(polygon);
-
-				assert.equal(event_queue.events.length, 8);
+				assert.equal(event_queue.events.length, 30);
 				assert.equal(event_queue.events.length, event_queue.numberOfEvents);
 			});
 	});
